@@ -1,3 +1,5 @@
+import java.awt.Container;
+import java.awt.GridLayout;
 import javax.swing.JFrame;
 
 public class GalaxyApp {
@@ -8,9 +10,15 @@ public class GalaxyApp {
 	public GalaxyApp() {
 		JFrame f = new JFrame("Galaxy");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Galaxy galaxy = new Galaxy();
-		galaxy.setOpaque(true);
-		f.getContentPane().add(galaxy);
+		Galaxy galaxy1 = new Galaxy();
+		galaxy1.setOpaque(true);
+		//Galaxy galaxy2 = new Galaxy();
+		//galaxy2.setOpaque(true);
+		
+		Container c = f.getContentPane();
+		c.setLayout(new GridLayout(1, 0));
+		c.add(galaxy1);
+		//c.add(galaxy2);
 		f.pack();
 		f.setVisible(true);
 	}

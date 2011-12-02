@@ -58,6 +58,11 @@ public class Vector {
 		this.div(m);
 	}
 	
+	public void equalsTo(Vector copy) {
+		this.x = copy.x;
+		this.y = copy.y;
+	}
+	
 	public String toString() {
 		return "[" + x + ", " + y + "]";
 	}

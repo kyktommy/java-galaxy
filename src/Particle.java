@@ -1,4 +1,6 @@
 public class Particle{
+	public static double maxV = 0.0;
+	public static double minV = 1.0;
 	Vector location = new Vector();
 	Vector velocity = new Vector();
 	Vector acceleration = new Vector();
@@ -10,7 +12,13 @@ public class Particle{
 		//System.out.println(location.x);
 	}
 	
+	public Particle(Particle copy) {
+		this.location.x = copy.location.x;
+		this.location.y = copy.location.y;
+	}
+	
 	public static Vector getRValue(Particle i, Particle j) {
+		
 		return Vector.sub(i.location, j.location);
 	}
 	
@@ -19,17 +27,27 @@ public class Particle{
 		acceleration.x = force.x;
 		acceleration.y = force.y;
 		acceleration.mult(dT);
-		//System.out.println(temp);
+	
 		velocity.add(acceleration);
 		
 		Vector tempV = new Vector();
 		tempV.x = velocity.x;
 		tempV.y = velocity.y;
-		tempV.mult(dT);
+		tempV.mult(dT);	
+		//System.out.println(tempV);
+		if (tempV.mag() > maxV)
+			maxV = tempV.mag();
+		if (tempV.mag() < minV)
+			minV = tempV.mag();
+		//System.out.println(maxV + ", " + minV);
+
+			
 		location.add(tempV);
 	}
 	public double distance(Particle other) {
+		
 		return this.location.dist(other.location);
+		
 	}
 	
 	public double distance(Vector other) {
@@ -59,7 +77,7 @@ public class Particle{
 	}
 	
 	public String toString() {
-		return "Mass: " + mass;
+		return "Mass: " + mass + " X: " + location.x + " Y: " + location.y + "\n";
 	}
 
 }
